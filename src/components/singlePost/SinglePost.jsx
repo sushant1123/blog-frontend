@@ -1,15 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import MyImg from "../../assets/usedImg.jpg";
 import "./singlePost.styles.css";
 
 const SinglePost = () => {
 	return (
 		<div className="singlePost">
 			<div className="singlePostWrapper">
-				<img
-					className="singlePostImg"
-					src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-					alt=""
-				/>
+				<img className={MyImg} alt="" />
 				<h1 className="singlePostTitle">
 					Lorem ipsum dolor
 					<div className="singlePostEdit">
@@ -21,9 +20,9 @@ const SinglePost = () => {
 					<span>
 						Author:
 						<b className="singlePostAuthor">
-							{/* <Link className="link" to="/posts?username=Sushant">
+							<Link className="link" to="/posts?username=Sushant">
 								Sushant
-							</Link> */}
+							</Link>
 						</b>
 					</span>
 					<span className="singlePostDate">1 day ago</span>

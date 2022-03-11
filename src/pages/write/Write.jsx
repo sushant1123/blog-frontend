@@ -1,14 +1,11 @@
 import React from "react";
 import "./write.styles.css";
+import MyImg from "../../assets/usedImg.jpg";
 
 const Write = () => {
 	return (
 		<div className="write">
-			<img
-				className="writeImg"
-				src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-				alt=""
-			/>
+			<img className="writeImg" src={MyImg} alt="" />
 			<form className="writeForm">
 				<div className="writeFormGroup">
 					<label htmlFor="fileInput">
