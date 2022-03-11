@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Topbar from "./components/topbar/Topbar";
+import Home from "./pages/home/Home";
+import PostDetails from "./pages/postDetails/PostDetails";
+import Write from "./pages/write/Write";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<>
+			<Topbar />
+			{/* <Home /> */}
+			{/* <PostDetails /> */}
+			<Write />
+		</>
+	);
+};
 
 export default App;
