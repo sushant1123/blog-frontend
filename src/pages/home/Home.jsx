@@ -15,13 +15,11 @@ const Home = () => {
 		const fetchPosts = async () => {
 			const { data } = await axios.get(`/posts${search}`);
 			setPosts(data);
-			console.log(data);
 		};
 
 		fetchPosts();
 	}, [search]);
 
-	console.log(search);
 	return (
 		<>
 			<Header />
