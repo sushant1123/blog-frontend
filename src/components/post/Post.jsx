@@ -1,30 +1,34 @@
 import React from "react";
-import "./post.styles.css";
-import post from "../../assets/post.jpg";
+import moment from "moment";
+import lodash from "lodash";
+import { generatePublicUrl } from "../../helpers/publicUrl.js";
 
-const Post = () => {
+import "./post.styles.css";
+import { Link } from "react-router-dom";
+
+const Post = ({ post }) => {
 	return (
 		<div className="post">
-			<img src={post} alt="" className="postImg" />
+			{post?.postPic && <img src={generatePublicUrl(post.postPic)} alt="" className="postImg" />}
 			<div className="postInfo">
 				<div className="postCategories">
-					<span className="postCategory">Music</span>
-					<span className="postCategory">Life</span>
+					{post?.categories.map((cat, index) => (
+						<span className="postCategory" key={index}>
+							{cat}
+						</span>
+					))}
 				</div>
-				<span className="postTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+				<Link to={`/post/${post._id}`} className="link">
+					<span className="postTitle">
+						{lodash.capitalize(post?.title)}
+						{post.title.charAt(post?.title?.length - 1) !== "." && "."}
+					</span>
+				</Link>
 				<hr />
-				<span className="postDate">1 hour ago</span>
+				<span className="postDate">{new Date(post?.createdAt).toDateString()}</span>
+				{/* <span className="postDate">{moment().from(post.createdAt)}</span> */}
 			</div>
-			<p className="postDescription">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus architecto magnam quisquam
-				qui officiis ut! Consequuntur rerum itaque reprehenderit odio, molestias debitis? Dolores est
-				veniam ut nesciunt, ipsa odit rerum. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-				Eius temporibus dolorem corrupti mollitia quaerat cum dicta aliquid beatae. Illum eius,
-				facilis omnis nam porro harum? Facere rem aliquid dicta voluptate! Lorem ipsum dolor sit amet
-				consectetur adipisicing elit. Vitae, illum atque iste exercitationem accusantium nihil? Dicta
-				quaerat alias voluptatem? Sunt voluptate molestias natus ad totam, cupiditate omnis officiis?
-				Tempora, qui.
-			</p>
+			<p className="postDescription">{lodash.capitalize(post?.desc)}</p>
 		</div>
 	);
 };

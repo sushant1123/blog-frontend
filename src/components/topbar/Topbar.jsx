@@ -4,7 +4,7 @@ import MyImage from "../../assets/mine.jpg";
 import { Link } from "react-router-dom";
 
 const Topbar = () => {
-	const user = true;
+	const user = false;
 
 	return (
 		<div className="top">

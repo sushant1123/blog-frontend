@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sidebar.styles.css";
 import sunset from "../../assets/sunset.jpg";
+import axios from "../../helpers/axios";
+import lodash from "lodash";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
+	const [categories, setCategories] = useState([]);
+
+	useEffect(() => {
+		const fetchCategories = async () => {
+			const { data } = await axios.get("/categories");
+			setCategories(data);
+		};
+		fetchCategories();
+	}, []);
+
 	return (
 		<div className="sidebar">
 			<div className="sidebarItem">
@@ -17,14 +30,19 @@ const Sidebar = () => {
 
 			<div className="sidebarItem">
 				<span className="sidebarTitle">CATEGORIES</span>
-				<ul className="sidebarList">
-					<li className="sidebarListItem">Life</li>
-					<li className="sidebarListItem">Music</li>
-					<li className="sidebarListItem">Style</li>
-					<li className="sidebarListItem">Sport</li>
-					<li className="sidebarListItem">Tech</li>
-					<li className="sidebarListItem">Movies</li>
-				</ul>
+				{categories?.length ? (
+					<ul className="sidebarList">
+						{categories.map((cat) => (
+							<li className="sidebarListItem" key={cat?._id}>
+								<Link className="link" to={`/?category=${cat?.name}`}>
+									{lodash.capitalize(cat?.name)}
+								</Link>
+							</li>
+						))}
+					</ul>
+				) : (
+					<li style={{ display: "inline-block" }}>No Categories Available</li>
+				)}
 			</div>
 
 			<div className="sidebarItem">

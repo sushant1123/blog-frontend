@@ -56,3 +56,8 @@
 	color: white;
 	border-radius: 10px;
 }
+
+.errorItem {
+	margin-top: 10px;
+	color: red;
+}

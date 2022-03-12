@@ -1,16 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import lodash from "lodash";
 
-import MyImg from "../../assets/usedImg.jpg";
+import axios from "../../helpers/axios.js";
+import { generatePublicUrl } from "../../helpers/publicUrl.js";
 import "./singlePost.styles.css";
 
 const SinglePost = () => {
+	const { postId } = useParams();
+	const [post, setPost] = useState([]);
+
+	useEffect(() => {
+		const fetchSinglePost = async () => {
+			const { data } = await axios.get(`/posts/${postId}`);
+			setPost(data);
+		};
+		fetchSinglePost();
+	}, [postId]);
+
 	return (
 		<div className="singlePost">
 			<div className="singlePostWrapper">
-				<img className={MyImg} alt="" />
+				{post.postPic && (
+					<img className="singlePostImg" src={generatePublicUrl(post.postPic)} alt={post?.title} />
+				)}
 				<h1 className="singlePostTitle">
-					Lorem ipsum dolor
+					{lodash.capitalize(post?.title)}
 					<div className="singlePostEdit">
 						<i className="singlePostIcon far fa-edit"></i>
 						<i className="singlePostIcon far fa-trash-alt"></i>
@@ -20,37 +35,14 @@ const SinglePost = () => {
 					<span>
 						Author:
 						<b className="singlePostAuthor">
-							<Link className="link" to="/posts?username=Sushant">
-								Sushant
+							<Link className="link" to={`/?user=${post?.username}`}>
+								{post?.username}
 							</Link>
 						</b>
 					</span>
-					<span className="singlePostDate">1 day ago</span>
+					<span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
 				</div>
-				<p className="singlePostDescription">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error quibusdam ipsa quis
-					quidem doloribus eos, dolore ea iusto impedit! Voluptatum necessitatibus eum beatae,
-					adipisci voluptas a odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
-					elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
-					Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi eos! Lorem, ipsum
-					dolor sit amet consectetur adipisicing elit. Iste error quibusdam ipsa quis quidem
-					doloribus eos, dolore ea iusto impedit! Voluptatum necessitatibus eum beatae, adipisci
-					voluptas a odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste
-					error quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit! Voluptatum
-					necessitatibus eum beatae, adipisci voluptas a odit modi eos! Lorem, ipsum dolor sit amet
-					consectetur adipisicing elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore
-					ea iusto impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi eos!
-					<br />
-					<br />
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error quibusdam ipsa quis
-					quidem doloribus eos, dolore ea iusto impedit! Voluptatum necessitatibus eum beatae,
-					adipisci voluptas a odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
-					elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
-					Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi eos! Lorem, ipsum
-					dolor sit amet consectetur adipisicing elit. Iste error quibusdam ipsa quis quidem
-					doloribus eos, dolore ea iusto impedit! Voluptatum necessitatibus eum beatae, adipisci
-					voluptas a odit modi eos! Lorem, ipsum dolor sit amet consectetur.
-				</p>
+				<p className="singlePostDescription">{lodash.capitalize(post.desc)}</p>
 			</div>
 		</div>
 	);
