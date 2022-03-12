@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import lodash from "lodash";
 import { generatePublicUrl } from "../../helpers/publicUrl.js";
 
@@ -26,7 +25,6 @@ const Post = ({ post }) => {
 				</Link>
 				<hr />
 				<span className="postDate">{new Date(post?.createdAt).toDateString()}</span>
-				{/* <span className="postDate">{moment().from(post.createdAt)}</span> */}
 			</div>
 			<p className="postDescription">{lodash.capitalize(post?.desc)}</p>
 		</div>

@@ -16,7 +16,6 @@ const App = () => {
 		<Router>
 			<Topbar />
 			<Routes>
-				{/* <Route path="/" element={user ? <Home /> : <Navigate to={"/login"} />} /> */}
 				<Route path="/" element={<Home />} />
 				<Route path="/post/:postId" element={<PostDetails />} />
 

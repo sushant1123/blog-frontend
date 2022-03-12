@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import { fetchPosts } from "../../api-calls";
 import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
