@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import "./write.styles.css";
-import { Context } from "../../context/Context";
-import MyImg from "../../assets/usedImg.jpg";
-import { generatePublicUrl } from "../../helpers/publicUrl";
-import axios from "../../helpers/axios";
 import { useNavigate } from "react-router-dom";
+
+import { Context } from "../../context/Context";
+import axios from "../../helpers/axios";
+
+import "./write.styles.css";
 
 const Write = () => {
 	const [title, setTitle] = useState("");

@@ -100,3 +100,9 @@
 .settingsSubmitButton:hover {
 	background-color: rgb(1, 114, 114);
 }
+
+.successMsg {
+	color: green;
+	text-align: center;
+	margin-top: 20px;
+}
