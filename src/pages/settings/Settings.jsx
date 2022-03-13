@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { Context } from "../../context/Context";
+import { generatePublicUrl } from "../../helpers/publicUrl";
 import "./settings.styles.css";
-import MyImg from "../../assets/usedImg.jpg";
+// import MyImg from "../../assets/usedImg.jpg";
 
 const Settings = () => {
+	const { user } = useContext(Context);
+
 	return (
 		<div className="settings">
 			<div className="settingsWrapper">
@@ -14,7 +18,7 @@ const Settings = () => {
 				<form className="settingsForm">
 					<label>Profile Picture</label>
 					<div className="settingsPP">
-						<img src={MyImg} alt="" />
+						<img src={generatePublicUrl(user?.profilePic)} alt="" />
 						<label htmlFor="fileInput">
 							<i className="settingsPPIcon far fa-user-circle"></i>{" "}
 						</label>

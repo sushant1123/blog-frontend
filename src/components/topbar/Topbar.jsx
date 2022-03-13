@@ -52,7 +52,9 @@ const Topbar = () => {
 			</div>
 			<div className="topRight">
 				{user ? (
-					<img src={generatePublicUrl(user?.profilePic)} alt="my img" className="topImg" />
+					<Link to={"/settings"} className="link">
+						<img src={generatePublicUrl(user?.profilePic)} alt="my img" className="topImg" />
+					</Link>
 				) : (
 					<ul className="topList">
 						<li className="topListItem">
